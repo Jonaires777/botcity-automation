@@ -49,20 +49,54 @@ def main():
     bot.connect_to_app(backend=Backend.UIA, path=app_path)
     
     main_window = bot.find_app_window(title_re='Documento - WordPad', class_name="WordPadClass", control_type="Window")
-                
+                    
     edit = bot.find_app_element(from_parent_window=main_window, control_type="Document", class_name='RICHEDIT50W')
     
     edit.type_keys("Hello, Welcome to BotCity", with_spaces=True)
     
-    """ save_work = bot.find_app_element(from_parent_window=main_window, control_type="Button", title_re="Salvar")
+    """ save_work = bot.find_app_element(from_parent_window=main_window, control_type="Button", title_re="Salvar") """
     
-    save_work.click()
+    """ save_work.click() """
     
-    save_window = bot.find_app_window(title_re="Salvar como", control_type="Window")
+    bot.wait(2000)
+    
+    select = bot.find_app_element(from_parent_window=main_window, title="Selecionar tudo", control_type="Button")
+    
+    select.click()
+        
+    bot.backspace()
 
-    save_window.print_control_identifiers() """
+    edit.type_keys("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et massa ipsum. Donec malesuada tincidunt sapien, nec egestas mi ornare eu. Maecenas commodo ex ut arcu maximus mattis. Pellentesque ac aliquet mi. Fusce luctus eros ante, ut cursus sem suscipit quis. Donec id nisi non mauris pulvinar tincidunt pharetra vel lacus. Nunc lacinia id lectus sed ornare. Vestibulum tincidunt fringilla aliquet. Aenean dolor justo, vulputate quis lacus vitae, venenatis faucibus sem. Integer id ante in nibh aliquet commodo eu nec augue. Duis ac sapien et augue condimentum tristique in nec dolor. Etiam at ipsum metus. Fusce luctus velit quis placerat commodo. Aenean ut venenatis nibh.")
     
+    close = bot.find_app_element(from_parent_window=main_window, title="Fechar", control_type="Button")    
     
+    close.click()
+    
+    bot.wait(2000)
+    
+    """ popup_window = bot.find_app_window(title="WordPad")
+
+    save_button = bot.find_app_element(from_parent_window=popup_window, title="Salvar", control_type="Button")
+    
+    save_button.click() """
+    
+    bot.click_at(x=630, y=400)
+    
+    bot.click_at(x=750, y=600)
+
+    bot.backspace()
+    bot.kb_type("WordPad_Automation_Teste")
+    
+    bot.click_at(x=830, y=680)
+
+    print("Tarefa finalizada")
+    """ save_window = bot.find_app_window(title="Salvar como", class_name="ThunderRT6MDIForm")
+    
+    if save_window:
+        print("Janela de salvamento encontrada.")
+        save_window.print_control_identifiers()
+    else:
+        print("Janela de salvamento não encontrada.") """
     
 def not_found(label):
     print(f"Element not found: {label}")
