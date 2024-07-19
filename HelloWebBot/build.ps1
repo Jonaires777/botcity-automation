@@ -1,0 +1,3 @@
+$exclude = @("venv", "HelloWebBot.zip")
+$files = Get-ChildItem -Path . -Exclude $exclude
+Compress-Archive -Path $files -DestinationPath "HelloWebBot.zip" -Force
